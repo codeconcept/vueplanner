@@ -22,10 +22,11 @@ export default {
     technos: TechnoList
   },
   created: function() {
+    const TECHNOS_URL = 'https://nodetestapi-pnmjtlievk.now.sh/technos';
     // if no server, put a json file in assets and point to this.axios.get('./builds/technos.json)
     // and import it in main.js: import './assets/technos.json'
     this.axios
-      .get("https://nodetestapi-legbatbehu.now.sh/technos")
+      .get(TECHNOS_URL)
       .then(response => {
         this.technos = response.data;
       });
