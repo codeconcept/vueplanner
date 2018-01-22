@@ -2,14 +2,14 @@
   <div id="app">
     <h3>{{ greetings }}</h3>
     <div>
-      <ul>
-        <li v-for="techno in technos" v-bind:key="techno._id">{{techno.name}}</li>
-      </ul>
+      <technos v-bind:technos="technos"></technos>
     </div>   
   </div>
 </template>
 
 <script>
+import TechnoList from './components/TechnoList.vue';
+
 export default {
   name: "app",
   data() {
@@ -17,6 +17,9 @@ export default {
       greetings: "Bienvenue sur Planner",
       technos: []
     };
+  },
+  components: {
+    technos: TechnoList
   },
   created: function() {
     // if no server, put a json file in assets and point to this.axios.get('./builds/technos.json)
@@ -35,7 +38,7 @@ export default {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
+  text-align: left;
   color: #2c3e50;
   margin-top: 60px;
 }
