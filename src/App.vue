@@ -15,33 +15,17 @@ export default {
   data() {
     return {
       greetings: "Bienvenue sur Planner",
-      technos: [
-        {
-          _id: "1",
-          name: "Vuex",
-          details: "Ecrire un comparatif Vuex vs Redux",
-          dateStudy: "2018-01-29T10:00:00.397Z",
-          dateCreation: "2018-01-21T17:00:46.397Z",
-          timeSpentStudying: "0"
-        },
-        {
-          _id: "2",
-          name: "Angular 6",
-          details: "sortie prévue le 28 mars 2018. Voir les nouveautés",
-          dateStudy: "2018-04-01T10:00:00.397Z",
-          dateCreation: "2018-01-21T18:42:46.007Z",
-          timeSpentStudying: "0"
-        },
-        {
-          _id: "3",
-          name: "Firebase",
-          details: "Jouer avec Firestore",
-          dateStudy: "2018-04-01T14:00:00.007Z",
-          dateCreation: "2018-01-21T18:44:46.210Z",
-          timeSpentStudying: "45"
-        }
-      ]
+      technos: []
     };
+  },
+  created: function() {
+    // if no server, put a json file in assets and point to this.axios.get('./builds/technos.json)
+    // and import it in main.js: import './assets/technos.json'
+    this.axios
+      .get("https://nodetestapi-legbatbehu.now.sh/technos")
+      .then(response => {
+        this.technos = response.data;
+      });
   }
 };
 </script>
